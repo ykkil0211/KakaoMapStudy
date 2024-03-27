@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MapTest13.html</title>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cf9a5597b56653d0ed56f8a0a60e47e5"></script>
+<script type="text/javascript">
+	
+	function initialize()
+	{
+		container = document.getElementById("map");
+		options = 
+		{
+			center: new kakao.maps.LatLng(37.5565315,126.9195436),
+			level: 3,
+		};
+		
+		map = new kakao.maps.Map(container, options);
+		
+		// 마커가 표시될 위치 구성
+		// (길 건너 스타벅스 → 37.556870033091904, 126.9199792620258)
+		markerPosition = new kakao.maps.LatLng(37.556870033091904, 126.9199792620258);
+		
+		// 마커 생성
+		marker = new kakao.maps.Marker(
+		{
+			// 구성할 위치
+			position: markerPosition,
+		});
+		
+		// 성성된 마커가 지도에 표시되도록 설정 
+		marker.setMap(map);
+		//-- 우리가 위에서 생성한 map(line 18)에 마크를 세팅
+	}
+	
+	function removeMarker()
+	{
+		// 지도 위의 마커 제거 
+		marker.setMap(null);
+	}
+	
+/* 	function createMarker()
+	{
+		// 마커가 지도(map)에 표시되도록 설정
+		marker.setMap(map);
+	} */
+	
+	// 홍대입구역 8번 출구 롯데시내마
+	function createMarker()
+	{
+		markerPosition = new kakao.maps.LagLng(37.557073722581165, 126.92487672659503);
+		
+		marker = new kakao.maps.marker(
+		{
+			position: markerPosition,
+		});
+		
+		marker.setMap(map);
+	} 
+</script>
+</head>
+<body onload="initialize()">
+
+<!-- ○ 발급받은 App Key -->
+<!-- appkey = cf9a5597b56653d0ed56f8a0a60e47e5 -->
+<!-- ○ 지도의 중심 좌표 -->
+<!-- 37.5478932,126.9341284 -->
+
+<div>
+	<h1>Kakao Map 고정 마커 생성</h1>
+	<hr />
+</div>
+
+<div id="map" style="width: 100%; height: 350px;"></div>
+
+<p>
+	<button type="button" onclick="removeMarker()">마커 제거</button>
+	<button type="button" onclick="createMarker()">마커 다시 생성</button>
+</p>
+<div id="result"></div>
+
+</body>
+</html>
